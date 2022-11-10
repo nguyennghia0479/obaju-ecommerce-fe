@@ -1,0 +1,136 @@
+<header class="header mb-5">
+  <div id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offer mb-3 mb-lg-0"><a href="#" class="btn btn-success btn-sm">Offer of the day</a><a
+            href="#" class="ml-1">Get flat 35% off on orders over $50!</a></div>
+        <div class="col-lg-6 text-center text-lg-right">
+          <ul class="menu list-inline mb-0">
+            <li id="login" class="list-inline-item">
+              <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+            </li>
+            <li id="register" class="list-inline-item">
+              <a href="register.html">Register</a>
+            </li>
+            <li id="display-name" class="list-inline-item">
+              <a href="#"></a>
+            </li>
+            <li id="logout" class="list-inline-item">
+              <a href="#" id="btn-logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Customer login</h5>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
+                aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <form action="#" method="post">
+              <div style="display: none;" class="alert alert-danger alert-message" role="alert">
+              </div>
+              <div class="form-group">
+                <input id="username" type="text" placeholder="username" class="form-control">
+              </div>
+              <div class="form-group">
+                <input id="password" type="password" placeholder="password" class="form-control">
+              </div>
+              <p class="text-center">
+                <button id="btn-login" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+              </p>
+            </form>
+            <p class="text-center text-muted">
+              <a href="register.html">Not registered yet?</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container"><a href="index.html" class="navbar-brand home"><img src="img/logo.png" alt="Obaju logo"
+          class="d-none d-md-inline-block"><img src="img/logo-small.png" alt="Obaju logo"
+          class="d-inline-block d-md-none"><span class="sr-only">Obaju - go to homepage</span></a>
+      <div class="navbar-buttons">
+        <button type="button" data-toggle="collapse" data-target="#navigation"
+          class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i
+            class="fa fa-align-justify"></i></button>
+        <button type="button" data-toggle="collapse" data-target="#search"
+          class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i
+            class="fa fa-search"></i></button><a href="basket.html"
+          class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i></a>
+      </div>
+      <div id="navigation" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+          <li class="nav-item dropdown menu-large">
+            <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200"
+              class="dropdown-toggle nav-link">Danh mục
+              <b class="caret"></b>
+            </a>
+            <ul id="dropdown-menu" class="dropdown-menu megamenu">
+              <li>
+                <div class="row">
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown admin-menu">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="admin-category-table.html">Category</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="admin-subcategory-table.html">Subcategory</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="admin-product-table.html">Product</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="admin-image-table.html">Image</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="admin-size-table.html">Produc Size</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Stock</a>
+          </li>
+        </ul>
+        <div class="navbar-buttons d-flex justify-content-end">
+          <!-- /.nav-collapse-->
+          <div id="search">
+            <div class="container">
+              <form role="search" class="ml-auto">
+                <div class="input-group">
+                  <input type="text" placeholder="Search product, ..." class="form-control">
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="basket.html"
+              class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<!-- JavaScript files-->
+<!-- <script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery.cookie/js.cookie.min.js"></script>
+<script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
+<script src="js/custom/header.js"></script> -->
+<!-- <script src="js/custom/auth.js"></script> -->
+<script src="vendor/jquery.cookie/js.cookie.min.js"></script>
+<script src="js/custom/header.js"></script>
+<script src="js/custom/auth.js"></script>

@@ -1,0 +1,76 @@
+<div class="modal fade" id="deleteModal" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel"><strong>Xác nhận xóa</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn muốn xóa dữ liệu này ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>Đóng
+                </button>
+                <button type="button" class="btn btn-success confirm-delete">
+                    <i class="fa fa-check" aria-hidden="true"></i>Đồng ý
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getToastSuccess(result) {
+        $.toast({
+            heading: 'Success',
+            position: 'top-center',
+            text: result,
+            showHideTransition: 'slide',
+            icon: 'success'
+        })
+    }
+
+    function getToastError(result) {
+        $.toast({
+            heading: 'Error',
+            position: 'top-center',
+            text: result,
+            showHideTransition: 'fade',
+            icon: 'error',
+        })
+    }
+
+    $("body").on('click', '.btn-delete', function () {
+        var id = $(this).attr('id')
+        var target = $(this).attr('target')
+        $(".confirm-delete").attr("id", id)
+        $(".confirm-delete").attr("target", target)
+    });
+
+    $("body").on('click', '.confirm-delete', function () {
+        var target = $(this).attr('target')
+        var id = $(this).attr('id')
+        var row = $('.btn-delete[id=' + id + ']');
+        $.ajax({
+            url: `http://localhost:8080/api/v1/admin/${target}/${id}`,
+            method: "DELETE",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", "Bearer " + Cookies.get('token'));
+            }
+        }).done(function (response) {
+                row.closest('tr').remove()
+                getToastSuccess(response.content)
+            
+        }).fail(function (xhr, status, error) {
+            var data = xhr.responseText;
+            var jsonResponse = JSON.parse(data);
+            var message = jsonResponse["errors"]
+            getToastError(message)
+        })
+        $('#deleteModal').modal('hide');
+    });
+</script>

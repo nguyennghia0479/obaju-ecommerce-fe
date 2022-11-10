@@ -1,0 +1,65 @@
+#content .card .text h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    height: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#content .card .text p.price {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 300;
+}
+
+#related h2 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 2.25rem;
+    color: #4fbfa8;
+    font-weight: 100;
+    text-align: center;
+}
+
+#related .product-slider {
+    clear: both;
+    margin-bottom: 20px;
+}
+
+#related .product-slider .item {
+    margin: 0 25px;
+}
+
+#related .product-slider .product {
+    margin-bottom: 0;
+}
+
+#related .product-slider .owl-dots {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#advantages h3 {
+    color: #4fbfa8;
+}
+
+.category-menu li a {
+    font-size: 0.9rem;
+}
+
+.modal-body form .required:after {
+    content: " *";
+    color: red;
+}
+
+.jq-toast-single {
+    font-size: 0.9rem;
+}
+
+.jq-toast-wrap {
+    width:300px;
+}
+
+.admin-menu a:hover {
+    color: #4fbfa8;
+}

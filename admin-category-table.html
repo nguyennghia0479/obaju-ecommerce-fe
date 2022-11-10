@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Obaju : e-commerce template</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <!-- Google fonts - Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700">
+  <!-- owl carousel-->
+  <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
+  <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
+  <link rel="stylesheet" href="vendor/toast-master/css/jquery.toast.css">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="favicon.png">
+  <!-- Tweaks for older IEs-->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+
+<body>
+  <!-- navbar-->
+  <div id="header">
+  </div>
+
+  <div id="all">
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <!-- breadcrumb-->
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li aria-current="page" class="breadcrumb-item active">Admin</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-3">
+            <!--
+              *** MENUS AND FILTERS ***
+              _________________________________________________________
+              -->
+            <div id="admin-sidebar">
+            </div>
+            <!-- *** MENUS AND FILTERS END ***-->
+          </div>
+          <div class="col-lg-9">
+            <div id="customer-orders">
+              <div class="box">
+                <div class="row justify-content-between">
+                  <div class="col-lg-3">
+                    <a id="btn-add-category" href="#categoryFormModal" data-toggle="modal" class="btn btn-primary">
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="container">
+                      <form role="search" class="ml-auto">
+                        <div class="input-group">
+                          <input type="text" placeholder="Search" class="form-control">
+                          <div class="input-group-append">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="table-responsive">
+                  <table id="table-category" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div id="modal-delete">
+            </div>
+            <div class="modal fade" id="categoryFormModal" data-backdrop="static" tabindex="-1" role="dialog"
+              aria-labelledby="formModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="formModalLabel"><strong>Thông tin Danh mục</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="categoryForm" action="#" class="form-horizontal form-material">
+                      <div class="form-group">
+                        <label class="col-md-12 required"><strong>Tên Danh mục</strong></label>
+                        <div class="col-md-12">
+                          <input id="name" name="name" type="text" placeholder="Tên danh mục"
+                            class="form-control form-control-line" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-12 required"><strong>Mã Danh mục</strong></label>
+                        <div class="col-md-12">
+                          <input id="code" name="code" type="text" maxlength="20" placeholder="Mã danh mục"
+                            class="form-control form-control-line" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                          <button type="submit" id="btn-save-category" class="btn btn-success">
+                            <i class="fa fa-check" aria-hidden="true"></i>Lưu
+                          </button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>Đóng
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pages">
+              <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                <ul class="pagination">
+                  <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span
+                        aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                  <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item"><a href="#" class="page-link">4</a></li>
+                  <li class="page-item"><a href="#" class="page-link">5</a></li>
+                  <li class="page-item"><a href="#" aria-label="Next" class="page-link"><span
+                        aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <!-- /.col-lg-9-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--
+    *** FOOTER ***
+    _________________________________________________________
+    -->
+  <div id="admin-footer">
+  </div>
+
+  <!-- JavaScript files-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery.cookie/js.cookie.min.js"></script>
+  <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
+  <script src="vendor/toast-master/js/jquery.toast.js"></script>
+  <script src="js/custom/layout.js"></script>
+  <script src="js/custom/user-token.js"></script>
+  <script src="js/custom/admin-category.js"></script>
+</body>
+
+</html>
