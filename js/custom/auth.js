@@ -33,6 +33,7 @@ $(document).ready(function () {
 
     $("#btn-login").click(function (e) {
         e.preventDefault()
+        var url = window.location.href
         var username = $("#username").val()
         var password = $("#password").val()
         $.ajax({
@@ -47,7 +48,7 @@ $(document).ready(function () {
             if (!response.hasError) {
                 var token = response.content
                 Cookies.set('token', token)
-                window.location.href = "/index.html"
+                window.location.href = url
             }
         }).fail(function (xhr, status, error) {
             var data = xhr.responseText;
@@ -61,7 +62,7 @@ $(document).ready(function () {
     $("#btn-logout").click(function (e) {
         e.preventDefault()
         Cookies.remove('token')
-        window.location.href = "/register.html"
+        window.location.href = "index.html"
     })
 
 })
