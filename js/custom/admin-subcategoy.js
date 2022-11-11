@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     function clearFormData() {
         $("label[for=name], input#name").show()
-        $("label[for=categorySelect], select#selectCategory").show()
+        $("label[for=selectCategory], select#selectCategory").show()
         $("#id").val('')
         $("#name").val('')
         $("#description").val('')
@@ -141,11 +141,12 @@ $(document).ready(function () {
         clearFormData();
     })
 
-    $("body").on('click', '.btn-edit-subcategory', function () {
+    $("body").on('click', '.btn-edit-subcategory', function (e) {
+        e.preventDefault()
         $("label[for=name], input#name").hide()
-        $("label[for=categorySelect], select#selectCategory").hide()
+        $("label[for=selectCategory], select#selectCategory").hide()
         var id = $(this).attr("subcategory-id")
-        var description = $(this).parent("td").prev("td").prev("td").text()
+        var description = $(this).closest("td").prev("td").prev("td").text()
         $("#id").val(id)
         $("#description").val(description)
     })
