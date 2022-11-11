@@ -173,7 +173,10 @@ $(document).ready(function () {
         var id = $(this).attr("product-id")
         $.ajax({
             url: "http://localhost:8080/api/v1/products/" + id,
-            method: "GET"
+            method: "GET",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
+            }
         }).done(function(response) {
             var product = response.content
             $("#id").val(id)
@@ -182,6 +185,11 @@ $(document).ready(function () {
             $("#previewImg").attr('src', product.avatarURL)
             getSelectColor(product.color)
             getSelectSubcategory(product.subcategory.id)
+        }).fail(function (xhr, status, error) {
+            var data = xhr.responseText
+            var jsonResponse = JSON.parse(data)
+            var message = jsonResponse["errors"]
+            getToastError(message)
         })
     })
 

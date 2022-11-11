@@ -19,6 +19,9 @@ $(document).ready(function () {
         } else {
             $(".admin-menu").hide()
         }
+        if(window.location.pathname.toLowerCase() == '/register.html') {
+            window.location.href = 'index.html'
+        }
     } else {
         $("#top #display-name").hide()
         $("#top #logout").hide()
