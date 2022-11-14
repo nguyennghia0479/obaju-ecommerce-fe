@@ -59,13 +59,14 @@ $(document).ready(function () {
 
     function getSelectColor(color) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/products/select-colors",
+            url: "http://localhost:8080/api/v1/products/select-color",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
             }
         }).done(function (response) {
             $("#selectColor").empty()
+            $("#selectColor").append('<option value="">Chọn màu</option>')
             $.each(response.content, function (index, value) {
                 var option = `<option value="${value}">${value}</option>`
                 $("#selectColor").append(option)
@@ -77,13 +78,14 @@ $(document).ready(function () {
 
     function getSelectSubcategory(subcategoryId) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select",
+            url: "http://localhost:8080/api/v1/subcategories/select-subcategory",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
             }
         }).done(function (response) {
             $("#selectSubcategory").empty()
+            $("#selectSubcategory").append('<option value="">Chọn Danh mục</option>')
             $.each(response.content, function (index, value) {
                 var option = `<option value="${value.id}">${value.name}</option>`
                 $("#selectSubcategory").append(option)

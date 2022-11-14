@@ -36,7 +36,7 @@ $(document).ready(function () {
                                 <td>${value.name}</td>
                                 <td>${value.code}</td>
                                 <td>${value.description}</td>
-                                <td>${value.category.name}</td>
+                                <td>${value.category}</td>
                                 <td>
                                     <div class="row no-gutters">
                                         <div class="col-sm-6">
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     function getSelectCategory() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/categories",
+            url: "http://localhost:8080/api/v1/subcategories/select-category",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -68,7 +68,7 @@ $(document).ready(function () {
             $("#selectCategory").empty()
             $("#selectCategory").append('<option value="">Chọn danh mục cha</option>')
             $.each(response.content, function (index, value) {
-                var option = `<option value="${value.id}">${value.name}</option>`
+                var option = `<option value="${value}">${value}</option>`
                 $("#selectCategory").append(option)
             })
         })
@@ -76,21 +76,24 @@ $(document).ready(function () {
 
     function clearFormData() {
         $("label[for=name], input#name").show()
+        $("label[for=code], input#code").show()
         $("label[for=selectCategory], select#selectCategory").show()
         $("#id").val('')
         $("#name").val('')
+        $("#code").val('')
         $("#description").val('')
         getSelectCategory()
     }
 
-    function createSubcategory(dataName, dataDescription, dataCategoryId) {
+    function createSubcategory(dataName, dataCode, dataDescription, dataCategory) {
         $.ajax({
             url: "http://localhost:8080/api/v1/admin/subcategories",
             method: "POST",
             data: JSON.stringify({
                 name: dataName,
+                code: dataCode,
                 description: dataDescription,
-                categoryId: dataCategoryId
+                category: dataCategory
             }),
             contentType: "application/json",
             beforeSend: function (xhr) {
@@ -144,6 +147,7 @@ $(document).ready(function () {
     $("body").on('click', '.btn-edit-subcategory', function (e) {
         e.preventDefault()
         $("label[for=name], input#name").hide()
+        $("label[for=code], input#code").hide()
         $("label[for=selectCategory], select#selectCategory").hide()
         var id = $(this).attr("subcategory-id")
         var description = $(this).closest("td").prev("td").prev("td").text()
@@ -155,10 +159,11 @@ $(document).ready(function () {
         e.preventDefault()
         var dataId = $("#id").val()
         var dataName = $("#name").val()
+        var dataCode = $("#code").val()
         var dataDescription = $("#description").val()
-        var dataCategoryId = $("#selectCategory").val()
+        var dataCategory = $("#selectCategory").val()
         if (dataId == '') {
-            createSubcategory(dataName, dataDescription, dataCategoryId)
+            createSubcategory(dataName, dataCode, dataDescription, dataCategory)
         } else {
             updateSubcategory(dataId, dataDescription)
         }

@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     function getSelectSubcategoryAndProduct() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select",
+            url: "http://localhost:8080/api/v1/subcategories/select-subcategory",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -81,7 +81,7 @@ $(document).ready(function () {
                 subcategoryId: dataSubcategoryId
             }
             $.ajax({
-                url: "http://localhost:8080/api/v1/select-product",
+                url: "http://localhost:8080/api/v1/subcategories/products/select-products",
                 method: "GET",
                 data: data,
                 beforeSend: function (xhr) {

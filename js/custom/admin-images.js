@@ -56,7 +56,7 @@ $(document).ready(function () {
 
     function getSelectSubcategoryAndProduct() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select",
+            url: "http://localhost:8080/api/v1/subcategories/select-subcategory",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -76,7 +76,7 @@ $(document).ready(function () {
                 subcategoryId: dataSubcategoryId
             }
             $.ajax({
-                url: "http://localhost:8080/api/v1/select-product",
+                url: "http://localhost:8080/api/v1/subcategories/products/select-products",
                 method: "GET",
                 data: data,
                 beforeSend: function (xhr) {
@@ -144,7 +144,7 @@ $(document).ready(function () {
     $("#btn-save-image").click(function (e) {
         e.preventDefault()
         var form = new FormData()
-        var dataProductId = $("#productSelect").val()
+        var dataProductId = $("#selectProduct").val()
         form.append('productId', dataProductId)
         $.each($("input[type=file]"), function (i, obj) {
             $.each(obj.files, function (j, file) {
@@ -178,7 +178,7 @@ $(document).ready(function () {
 
     $("#btn-delete-image").click(function(e) {
         e.preventDefault()
-        var dataProductId = $("#productSelect").val()
+        var dataProductId = $("#selectProduct").val()
         if(dataProductId != '') {
             $.ajax({
                 url: "http://localhost:8080/api/v1/admin/products/" + dataProductId + "/images",

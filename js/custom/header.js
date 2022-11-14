@@ -1,27 +1,27 @@
 $(document).ready(function () {
+
+    function encodeURL(str) {
+        return str.toLowerCase()
+        .replace(/[^a-z0-9\-_]+/g, "-")
+        .replace(/-{2,}/, "-")
+        .replace(/^-|-$/, '');
+    }
+
     function header() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/categories/include-subcategories",
+            url: "http://localhost:8080/api/v1/subcategories",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
             }
         }).done(function (response) {
-            $("#dropdown-menu .row").empty()
-            $.each(response.content, function(index, value){
-                var row = `<div id=${value.code} class="col-md-6 col-lg-3">
-                                <h5>${value.name}</h5>
-                                <ul class="list-unstyled mb-3">
-                                </ul>
-                            </div>`
-                $("#dropdown-menu .row").append(row)
-                $.each(value.subcategories, function(i, val){
-                    var subCategory = `<li class="nav-item">
-                                            <a href="category.html" class="nav-link">${val.name}</a>
-                                        </li>`
-                    $("[id=" + value.code +"] .list-unstyled").append(subCategory)
-                })
-            })          
+            // $("[id=" + value.category + "] .list-unstyled").empty()
+            $.each(response.content, function (index, value) {
+                var row = `<li class="nav-item">
+                                <a href="category.html?name=${value.nameURL}" class="nav-link">${value.name}</a>
+                            </li>`
+                $("[id=" + value.category + "] .list-unstyled").append(row)
+            })
         })
     }
 

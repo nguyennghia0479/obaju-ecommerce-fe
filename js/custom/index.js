@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+    function getCurrency(price) {
+        return (price / 1000).toFixed(3)
+    }
+
     function hot() {
         $.ajax({
             url: "http://localhost:8080/api/v1/products",
@@ -11,7 +16,7 @@ $(document).ready(function () {
                                 <img class="card-img-top mb-2" src="${value.avatarURL}" alt="Image">
                                 <div class="text text-center">
                                     <h3>${value.name}</h3>
-                                    <p class="price">$${value.price}</p>
+                                    <p class="price">${getCurrency(value.price)} VND</p>
                                 </div>
                                 </div>
                             </div>`
