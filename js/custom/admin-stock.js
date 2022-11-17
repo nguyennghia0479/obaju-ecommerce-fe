@@ -129,8 +129,10 @@ $(document).ready(function () {
         $("#selectProduct").val('')
         $("#selectSize").val('')
         $("#quantity").val('')
-        $("#stockForm .row").show()
-        $("label[for=update-quantity], input#update-quantity").hide()
+        $("#stockForm .form-add").show()
+        $("label[for=updateQuantity], input#updateQuantity").hide()
+        $(".form-control, .custom-file-input").removeClass("is-invalid is-valid")
+        $("label[class=error]").remove()
     }
 
     function createStock(dataProductId, dataSizeId, dataQuantity) {
@@ -148,7 +150,7 @@ $(document).ready(function () {
             }
         }).done(function (response) {
             if (!response.hasError) {
-                getToastSuccess("Add new stock successfully")
+                getToastSuccess("Thêm kho hàng thành công")
                 clearFormData()
                 getStocks()
             }
@@ -174,7 +176,7 @@ $(document).ready(function () {
             }
         }).done(function (response) {
             if (!response.hasError) {
-                getToastSuccess("Update stock successfully")
+                getToastSuccess("Cập nhật kho hàng thành công")
                 clearFormData()
                 getStocks()
             }
@@ -195,22 +197,57 @@ $(document).ready(function () {
         var id = $(this).attr("stock-id")
         var quantity = $(this).closest("td").prev("td").text()
         $("#id").val(id)
-        $("#update-quantity").val(quantity)
-        $("#stockForm .row").hide()
-        $("label[for=update-quantity], input#update-quantity").show()
+        $("#updateQuantity").val(quantity)
+        $("#stockForm .form-add").hide()
+        $("label[for=updateQuantity], input#updateQuantity").show()
     })
 
-    $("#btn-save-stock").click(function (e) {
-        e.preventDefault()
-        var dataId = $("#id").val()
-        if (dataId == '') {
-            var dataProductId = $("#selectProduct").val()
-            var dataSizeId = $("#selectSize").val()
-            var dataQuantity = $("#quantity").val()
-            createStock(dataProductId, dataSizeId, dataQuantity)
-        } else {
-            var dataQuantity = $("#update-quantity").val()
-            updateStock(dataId, dataQuantity)
+    $("#stockForm").validate({
+        rules: {
+            selectProduct: "required",
+            selectSize: "required",
+            quantity: {
+                required: true,
+                number: true,
+                digits: true
+            },
+            updateQuantity: {
+                required: true,
+                number: true,
+                digits: true
+            }
+        },
+        messages: {
+            selectProduct: "Bạn chưa chọn sản phẩm",
+            selectSize: "Bạn chưa chọn size",
+            quantity: {
+                required: "Bạn chưa nhập số lượng",
+                number: "Số lượng phải là số nguyên dương",
+                digits: "Số lượng phải là số nguyên dương"
+            },
+            updateQuantity: {
+                required: "Bạn chưa nhập số lượng",
+                number: "Số lượng phải là số nguyên dương",
+                digits: "Số lượng phải là số nguyên dương"
+            }
+        },
+        highlight: function (input) {
+            $(input).addClass('is-invalid');
+        },
+        unhighlight: function (input) {
+           $(input).removeClass('is-invalid').addClass('is-valid');
+        },
+        submitHandler: function () {
+            var dataId = $("#id").val()
+            if (dataId == '') {
+                var dataProductId = $("#selectProduct").val()
+                var dataSizeId = $("#selectSize").val()
+                var dataQuantity = $("#quantity").val()
+                createStock(dataProductId, dataSizeId, dataQuantity)
+            } else {
+                var dataQuantity = $("#updateQuantity").val()
+                updateStock(dataId, dataQuantity)
+            }
         }
     })
 

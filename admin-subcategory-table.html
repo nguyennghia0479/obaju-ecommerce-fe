@@ -43,8 +43,9 @@
             <!-- breadcrumb-->
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li aria-current="page" class="breadcrumb-item active">Admin</li>
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li aria-current="page" class="breadcrumb-item">Admin</li>
+                <li aria-current="page" class="breadcrumb-item active">Quản lý Danh mục</li>
               </ol>
             </nav>
           </div>
@@ -63,7 +64,7 @@
                 <div class="row justify-content-between">
                   <div class="col-lg-3">
                     <a id="btn-add-subcategory" href="#subcategoryFormModal" data-toggle="modal" class="btn btn-primary"
-                      data-toggle="tooltip" title="Add new">
+                      data-toggle="tooltip" title="Thêm mới">
                       <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -71,7 +72,7 @@
                     <div class="container">
                       <form role="search" class="ml-auto">
                         <div class="input-group">
-                          <input type="text" placeholder="Search" class="form-control">
+                          <input type="text" placeholder="Tìm kiếm danh mục" class="form-control">
                           <div class="input-group-append">
                             <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                           </div>
@@ -114,33 +115,33 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form action="#" class="form-horizontal form-material">
+                    <form id="subcategoryForm" action="#" class="form-horizontal form-material">
                       <input id="id" type="hidden" class="form-control form-control-line" />
                       <div class="form-group">
                         <label for="name" class="col-md-12 required"><strong>Tên Danh mục con</strong></label>
                         <div class="col-md-12">
                           <input id="name" name="name" type="text" placeholder="Tên danh mục con"
-                            class="form-control form-control-line" />
+                            class="form-control form-control-line" required/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="code" class="col-md-12 required"><strong>Mã Danh mục con</strong></label>
                         <div class="col-md-12">
                           <input id="code" name="code" type="text" placeholder="Mã danh mục con"
-                            class="form-control form-control-line" />
+                            class="form-control form-control-line" required/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="description" class="col-md-12 required"><strong>Mô tả</strong></label>
                         <div class="col-md-12">
-                          <input id="description" name="description" type="text" placeholder="Mô tả"
-                            class="form-control form-control-line" />
+                          <textarea id="description" name="description" rows="5" placeholder="Mô tả" 
+                            class="form-control form-control-line"></textarea>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="selectCategory" class="col-md-12 required"><strong>Chọn Danh mục cha</strong></label>
                         <div class="col-sm-12">
-                          <select id="selectCategory" class="form-control form-control-line">
+                          <select id="selectCategory" name="selectCategory" class="form-control form-control-line" required>
                           </select>
                         </div>
                       </div>
@@ -190,6 +191,7 @@
 
   <!-- JavaScript files-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery.validate/jquery.validate.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
   <script src="vendor/owl.carousel/owl.carousel.min.js"></script>

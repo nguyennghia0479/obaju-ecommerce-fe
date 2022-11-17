@@ -43,9 +43,9 @@
             <!-- breadcrumb-->
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
                 <li aria-current="page" class="breadcrumb-item">Admin</li>
-                <li aria-current="page" class="breadcrumb-item active">Size</li>
+                <li aria-current="page" class="breadcrumb-item active">Quản lý Size</li>
               </ol>
             </nav>
           </div>
@@ -64,7 +64,7 @@
                 <div class="row justify-content-between">
                   <div class="col-lg-3">
                     <a id="btn-add-size" href="#sizeFormModal" data-toggle="modal" class="btn btn-primary" data-toggle="tooltip"
-                      title="Add new">
+                      title="Thêm mới">
                       <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -72,7 +72,7 @@
                     <div class="container">
                       <form role="search" class="ml-auto">
                         <div class="input-group">
-                          <input type="text" placeholder="Search" class="form-control">
+                          <input type="text" placeholder="Tìm kiếm size" class="form-control">
                           <div class="input-group-append">
                             <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                           </div>
@@ -81,7 +81,6 @@
                     </div>
                   </div>
                 </div>
-
                 <hr>
                 <div class="table-responsive">
                   <table id="table-size" class="table table-hover">
@@ -89,8 +88,7 @@
                       <tr>
                         <th>#</th>
                         <th>Size</th>
-                        <th>Size Type</th>
-                        <th>Action</th>
+                        <th>Chức năng</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -99,7 +97,6 @@
                 </div>
               </div>
             </div>
-
             <div id="modal-delete">
             </div>
             <div class="modal fade" id="sizeFormModal" data-backdrop="static" tabindex="-1" role="dialog"
@@ -113,27 +110,16 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form id="imageForm" action="#" class="form-horizontal form-material">
-                      <div class="row no-gutters">
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="size" class="col-md-12 required"><strong>Size</strong></label>
-                            <div class="col-md-12">
-                              <input id="size" name="size" type="text" placeholder="Size"
-                                class="form-control form-control-line" />
-                            </div>
+                    <form id="sizeForm" action="#" class="form-horizontal form-material">                 
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="size" class="col-md-12 required"><strong>Size</strong></label>
+                          <div class="col-md-12">
+                            <input id="size" name="size" type="text" placeholder="Nhập size"
+                              class="form-control form-control-line" required/>
                           </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectSize" class="col-md-12 required"><strong>Chọn loại size</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectSize" class="form-control form-control-line">
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      </div>                   
                       <div class="form-group">
                         <div class="col-sm-12">
                           <button type="submit" id="btn-save-size" class="btn btn-success">
@@ -180,6 +166,8 @@
 
   <!-- JavaScript files-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery.validate/jquery.validate.js"></script>
+  <script src="vendor/jquery.validate/additional-methods.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
   <script src="vendor/owl.carousel/owl.carousel.min.js"></script>

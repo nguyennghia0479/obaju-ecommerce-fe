@@ -20,6 +20,10 @@
     font-weight: 300;
 }
 
+#content .card.sidebar-menu ul.nav.category-menu li a  {
+    justify-content: left;
+}
+
 #related h2 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -70,4 +74,9 @@
 
 .admin-menu a:hover {
     color: #4fbfa8;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
 }

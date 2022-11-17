@@ -43,9 +43,9 @@
             <!-- breadcrumb-->
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
                 <li aria-current="page" class="breadcrumb-item">Admin</li>
-                <li aria-current="page" class="breadcrumb-item active">Products</li>
+                <li aria-current="page" class="breadcrumb-item active">Quản lý Sản phẩm</li>
               </ol>
             </nav>
           </div>
@@ -64,7 +64,7 @@
                 <div class="row justify-content-between">
                   <div class="col-lg-3">
                     <a id="btn-add-product" href="#productFormModal" data-toggle="modal" class="btn btn-primary" data-toggle="tooltip"
-                      title="Add new">
+                      title="Thêm mới">
                       <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -72,7 +72,7 @@
                     <div class="container">
                       <form role="search" class="ml-auto">
                         <div class="input-group">
-                          <input type="text" placeholder="Search" class="form-control">
+                          <input type="text" placeholder="Tìm kiếm sản phẩm" class="form-control">
                           <div class="input-group-append">
                             <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                           </div>
@@ -89,10 +89,10 @@
                       <tr>
                         <th>#</th>
                         <th style="width: 30%;">Tên</th>
-                        <th>Mã</th>
+                        <th>Đơn giá</th>
                         <th>Hình ảnh</th>
                         <th>Danh mục</th>
-                        <th>Action</th>
+                        <th>Chức năng</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -116,34 +116,35 @@
                   </div>
                   <div class="modal-body">
                     <form id="productForm" action="#" class="form-horizontal form-material" enctype="multipart/form-data">
-                      <input id="id" type="hidden" class="form-control form-control-line" />
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <div class="col-md-12">
-                                <img id="previewImg" class="d-block m-auto" src="" alt="" width="50%">
+                      <input id="id" type="hidden" class="form-control form-control-line" />                  
+                        <div class="form-group">
+                          <div class="col-md-12">
+                              <img id="previewImg" class="d-block m-auto" src="" alt="" width="50%">
+                          </div>
+                        </div>             
+                        <div class="form-group">
+                          <label for="file" class="col-md-12 required"><strong>Ảnh đại diện</strong></label>
+                          <div class="col-md-12">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="avatarURL" name="avatarURL" required>
+                              <label class="custom-file-label" for="avatarURL">Choose a File</label>
                             </div>
                           </div>
                         </div>
-                        <div class="col-12">
-                          <div class="form-group">
-                            <label for="file" class="col-md-12 required"><strong>Ảnh đại diện</strong></label>
-                            <div class="col-md-12">
-                              <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="avatarURL">
-                                <label class="custom-file-label" for="avatarURL">Choose a File</label>
-                              </div>
-                            </div>
-                          </div>
+                      <div class="form-group">
+                        <label for="name" class="col-md-12 required"><strong>Tên Sản phẩm</strong></label>
+                        <div class="col-md-12">
+                          <input id="name" name="name" type="text" placeholder="Tên sản phẩm" required
+                            class="form-control form-control-line" />
                         </div>
-                      </div>
+                      </div>                 
                       <div class="row no-gutters">
                         <div class="col-12 col-sm-6">
                           <div class="form-group">
-                            <label for="name" class="col-md-12 required"><strong>Tên Sản phẩm</strong></label>
-                            <div class="col-md-12">
-                              <input id="name" name="name" type="text" placeholder="Tên sản phẩm"
-                                class="form-control form-control-line" />
+                            <label for="selectColor" class="col-md-12 required"><strong>Chọn Màu sắc</strong></label>
+                            <div class="col-sm-12">
+                              <select id="selectColor" name="selectColor" class="form-control form-control-line" required>
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -151,32 +152,19 @@
                           <div class="form-group">
                             <label for="price" class="col-md-12 required"><strong>Giá Sản phẩm</strong></label>
                             <div class="col-md-12">
-                              <input id="price" name="price" type="number" placeholder="Giá sản phẩm"
+                              <input id="price" name="price" type="number" placeholder="Giá sản phẩm" required
                                 class="form-control form-control-line" />
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="row no-gutters">
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectColor" class="col-md-12 required"><strong>Chọn Màu sắc</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectColor" class="form-control form-control-line">
-                              </select>
-                            </div>
-                          </div>
+                      </div>                
+                      <div class="form-group">
+                        <label for="selectSubcategory" class="col-md-12 required"><strong>Chọn Danh mục</strong></label>
+                        <div class="col-sm-12">
+                          <select id="selectSubcategory" name="selectSubcategory" class="form-control form-control-line" required>
+                          </select>
                         </div>
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectSubcategory" class="col-md-12 required"><strong>Chọn Danh mục</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectSubcategory" class="form-control form-control-line">
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      </div>                 
                       <div class="form-group">
                         <div class="col-sm-12">
                           <button type="submit" id="btn-save-product" class="btn btn-success">
@@ -223,6 +211,8 @@
 
   <!-- JavaScript files-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery.validate/jquery.validate.js"></script>
+  <script src="vendor/jquery.validate/additional-methods.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
   <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
