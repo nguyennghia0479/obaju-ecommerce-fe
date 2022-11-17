@@ -34,7 +34,6 @@ $(document).ready(function() {
                 var row = `<tr>
                                 <td>${index + 1}</td>
                                 <td>${value.size}</td>
-                                <td>${value.sizeType}</td>
                                 <td>
                                     <div class="col-sm-6">
                                         <a href="#deleteModal" class="btn btn-danger btn-delete btn-sm" data-toggle="modal"
@@ -81,21 +80,12 @@ $(document).ready(function() {
         getSelectSizeType()
     }
 
-    $("#btn-add-size").click(function() {
-        clearFormData()
-    })
-
-    $("#btn-save-size").click(function(e) {
-        e.preventDefault()
-        var dataSize = $("#size").val()
-        var dataSizeType = $("#selectSize").val()
-            
+    function createSize(dataSize) {
         $.ajax({
             url: "http://localhost:8080/api/v1/admin/product-sizes",
             method: "POST",
             data: JSON.stringify({
-                size: dataSize,
-                sizeType: dataSizeType
+                size: dataSize
             }),
             contentType: "application/json",
             beforeSend: function (xhr) {
@@ -103,7 +93,7 @@ $(document).ready(function() {
             }
         }).done(function(response) {
             if(!response.hasError) {
-                getToastSuccess("Add new size successfully")
+                getToastSuccess("Thêm size mới thành công")
                 clearFormData()
                 getSizes()
             }
@@ -113,6 +103,35 @@ $(document).ready(function() {
             var message = jsonData["errors"]
             getToastError(message)
         })
+    }
+
+    $("#btn-add-size").click(function() {
+        clearFormData()
+    })
+
+    $("#sizeForm").validate({
+        rules: {
+            size: {
+                required: true,
+                maxlength: 10
+            }
+        },
+        messages: {
+            size: {
+                required: "Bạn chưa nhập size",
+                maxlength: "Size tối đa 10 ký tự"
+            }
+        },
+        highlight: function (input) {
+            $(input).addClass('is-invalid');
+        },
+        unhighlight: function (input) {
+           $(input).removeClass('is-invalid').addClass('is-valid');
+        },
+        submitHandler: function () {
+            var dataSize = $("#size").val()
+            createSize(dataSize)
+        }
     })
 
     getSizes()

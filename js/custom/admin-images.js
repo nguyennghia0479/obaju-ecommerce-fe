@@ -71,7 +71,7 @@ $(document).ready(function () {
         $("#selectSubcategory").on('change', function () {
             $("#selectProduct").find('option').remove()
             $("#selectProduct").append('<option value="">Chọn sản phẩm</option>')
-            let dataSubcategoryId = $("#selectSubcategory").val();     
+            let dataSubcategoryId = $("#selectSubcategory").val();
             let data = {
                 subcategoryId: dataSubcategoryId
             }
@@ -94,64 +94,11 @@ $(document).ready(function () {
     function clearFormData() {
         $("input[name=file]").val(null)
         $("input[name=file]").next('.custom-file-label').html('Choose a File')
+        $(".form-control, .custom-file-input").removeClass("is-invalid is-valid")
+        $("label[class=error]").remove()
     }
 
-    $("body").on('change', 'input[name=file]', function () {
-        var fileName = $(this).val();
-        $(this).next('.custom-file-label').html(fileName);
-    })
-
-    $("#btn-add-images").click(function () {
-        clearFormData()
-        $(".form-group #btn-append-input").show()
-        $(".images").show()
-        $("#btn-save-image").show()
-        $("#btn-delete-image").hide()
-    })
-
-    $("#btn-remove-images").click(function() {
-        $(".form-group #btn-append-input").hide()
-        $(".images").hide()
-        $("#btn-save-image").hide()
-        $("#btn-delete-image").show()
-    })
-
-    $("#btn-append-input").click(function () {
-        var row = `<div class="col-12">
-                        <div class="form-group">
-                            <label for="file" class="col-md-12 required"><strong>Ảnh đại diện</strong></label>
-                            <div class="col-md-12 input-group">
-                                <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="file">
-                                <label class="custom-file-label" for="file">Choose a File</label>
-                                </div>
-                                <div class="input-group-append">
-                                <button class="btn btn-outline-danger btn-remove" type="button">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`
-        $(".images").append(row)
-    })
-
-    $("body").on('click', '.btn-remove', function () {
-        $(this).closest('.col-12').remove()
-    })
-
-
-    $("#btn-save-image").click(function (e) {
-        e.preventDefault()
-        var form = new FormData()
-        var dataProductId = $("#selectProduct").val()
-        form.append('productId', dataProductId)
-        $.each($("input[type=file]"), function (i, obj) {
-            $.each(obj.files, function (j, file) {
-                form.append('files', file)
-            })
-        })
-
+    function createImages(form) {
         $.ajax({
             url: "http://localhost:8080/api/v1/admin/images",
             method: "POST",
@@ -164,7 +111,7 @@ $(document).ready(function () {
             }
         }).done(function (response) {
             if (!response.hasError) {
-                getToastSuccess("Add new images successfully")
+                getToastSuccess("Thêm hình ảnh thành công")
                 clearFormData()
                 getImages()
             }
@@ -174,33 +121,64 @@ $(document).ready(function () {
             var message = jsonResponse["errors"]
             getToastError(message)
         })
+    }
+
+    $("body").on('change', 'input[name=file]', function () {
+        var fileName = $(this).val();
+        $(this).next('.custom-file-label').html(fileName);
     })
 
-    $("#btn-delete-image").click(function(e) {
-        e.preventDefault()
-        var dataProductId = $("#selectProduct").val()
-        if(dataProductId != '') {
-            $.ajax({
-                url: "http://localhost:8080/api/v1/admin/products/" + dataProductId + "/images",
-                method: "DELETE",
-                data: JSON.stringify({
-                    id: dataProductId
-                }),
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
-                }
-            }).done(function (response) {
-                if (!response.hasError) {
-                    getToastSuccess(response.content)
-                    clearFormData()
-                    getImages()
-                }
-            }).fail(function (xhr, status, error) {
-                var data = xhr.responseText
-                var jsonResponse = JSON.parse(data)
-                var message = jsonResponse["errors"]
-                getToastError(message)
+    $("#btn-add-images").click(function () {
+        clearFormData()
+    })
+
+    $("#btn-append-input").click(function () {
+        var row = `<div class="col-12">
+                        <div class="form-group">
+                            <label for="file" class="col-md-12 required"><strong>Ảnh đại diện</strong></label>
+                            <div class="col-md-12 input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="file">
+                                    <label class="custom-file-label" for="file">Choose a File</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-danger btn-remove" type="button">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`
+        $(".images").append(row)
+    })
+
+    $("body").on('click', '.btn-remove', function () {
+        $(this).closest('.col-12').remove()
+    })
+
+    $("#imageForm").validate({
+        rules: {
+            selectProduct: "required"
+        },
+        messages: {
+            selectProduct: "Bạn chưa chọn sản phẩm"
+        },
+        highlight: function (input) {
+            $(input).addClass('is-invalid');
+        },
+        unhighlight: function (input) {
+            $(input).removeClass('is-invalid').addClass('is-valid');
+        },
+        submitHandler: function () {
+            var form = new FormData()
+            var dataProductId = $("#selectProduct").val()
+            form.append('productId', dataProductId)
+            $.each($("input[type=file]"), function (i, obj) {
+                $.each(obj.files, function (j, file) {
+                    form.append('files', file)
+                })
             })
+            createImages(form)
         }
     })
 
