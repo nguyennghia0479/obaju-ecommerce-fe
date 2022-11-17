@@ -82,6 +82,8 @@ $(document).ready(function () {
         $("#name").val('')
         $("#code").val('')
         $("#description").val('')
+        $(".form-control").removeClass("is-invalid is-valid")
+        $("label[class=error]").remove()
         getSelectCategory()
     }
 
@@ -101,7 +103,7 @@ $(document).ready(function () {
             }
         }).done(function (response) {
             if (response.hasError == false) {
-                getToastSuccess("Add successfully")
+                getToastSuccess("Thêm mới danh mục thành công")
                 clearFormData()
                 getSubcategory()
             }
@@ -127,7 +129,7 @@ $(document).ready(function () {
             }
         }).done(function (response) {
             if (response.hasError == false) {
-                getToastSuccess("Update successfully")
+                getToastSuccess("Cập nhật danh mục thành công")
                 clearFormData()
                 getSubcategory()
             }
@@ -155,19 +157,60 @@ $(document).ready(function () {
         $("#description").val(description)
     })
 
-    $("#btn-save-subcategory").click(function (e) {
-        e.preventDefault()
-        var dataId = $("#id").val()
-        var dataName = $("#name").val()
-        var dataCode = $("#code").val()
-        var dataDescription = $("#description").val()
-        var dataCategory = $("#selectCategory").val()
-        if (dataId == '') {
-            createSubcategory(dataName, dataCode, dataDescription, dataCategory)
-        } else {
-            updateSubcategory(dataId, dataDescription)
+    $("#subcategoryForm").validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 5,
+                maxlength: 20
+            },
+            code: {
+                required: true,
+                minlength: 2,
+                maxlength: 10
+            },
+            description: {
+                required: false,
+                maxlength: 10
+            },
+            selectCategory: "required"
+
+        },
+        messages: {
+            name: {
+                required: "Bạn chưa nhập tên danh mục",
+                minlength: "Tên danh mục phải có ít nhất 5 ký tự",
+                maxlength: "Tên danh mục tối đa 20 ký tự"
+            },
+            code: {
+                required: "Bạn chưa nhập mã danh mục",
+                minlength: "Mã danh mục phải có ít nhất 5 ký tự",
+                maxlength: "Mã danh mục tối đa 10 ký tự"
+            },
+            description: {
+                maxlength: "Mô tả tối đa 1000 ký tự"
+            },
+            selectCategory: "Bạn chưa chọn danh mục cha"
+        },
+        highlight: function (input) {
+            $(input).addClass('is-invalid');
+        },
+        unhighlight: function (input) {
+           $(input).removeClass('is-invalid').addClass('is-valid');
+        },
+        submitHandler: function () {
+            var dataId = $("#id").val()
+            var dataName = $("#name").val()
+            var dataCode = $("#code").val()
+            var dataDescription = $("#description").val()
+            var dataCategory = $("#selectCategory").val()
+            if (dataId == '') {
+                createSubcategory(dataName, dataCode, dataDescription, dataCategory)
+            } else {
+                updateSubcategory(dataId, dataDescription)
+            }
         }
-    })
+    });
 
     getSubcategory()
 })

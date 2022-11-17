@@ -43,8 +43,9 @@
             <!-- breadcrumb-->
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li aria-current="page" class="breadcrumb-item active">Admin</li>
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li aria-current="page" class="breadcrumb-item">Admin</li>
+                <li aria-current="page" class="breadcrumb-item active">Quản lý Kho hàng</li>
               </ol>
             </nav>
           </div>
@@ -63,7 +64,7 @@
                 <div class="row justify-content-between">
                   <div class="col-lg-3">
                     <a id="btn-add-stock" href="#stockFormModal" data-toggle="modal" class="btn btn-primary" data-toggle="tooltip"
-                      title="Add new">
+                      title="Thêm mới">
                       <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
                   </div>
@@ -71,7 +72,7 @@
                     <div class="container">
                       <form role="search" class="ml-auto">
                         <div class="input-group">
-                          <input type="text" placeholder="Search" class="form-control">
+                          <input type="text" placeholder="Tìm kiếm sản phẩm" class="form-control">
                           <div class="input-group-append">
                             <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                           </div>
@@ -89,7 +90,6 @@
                         <th>#</th>
                         <th>Tên</th>
                         <th>Hình ảnh</th>
-                        <th>Size</th>
                         <th>Số lượng</th>
                         <th style="width: 7rem;">Action</th>
                       </tr>
@@ -115,35 +115,29 @@
                   </div>
                   <div class="modal-body">
                     <form id="stockForm" action="#" class="form-horizontal form-material" enctype="multipart/form-data">
-                      <input id="id" type="hidden" class="form-control form-control-line" />
-                      <div class="row no-gutters">
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectSubcategory" class="col-md-12 required"><strong>Chọn Danh mục</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectSubcategory" class="form-control form-control-line">
-                                <option value="">Chọn danh mục</option>
-                              </select>
-                            </div>
-                          </div>
+                      <input id="id" type="hidden" class="form-control form-control-line" />                  
+                      <div class="form-group form-add">
+                        <label for="selectSubcategory" class="col-md-12 required"><strong>Chọn Danh mục</strong></label>
+                        <div class="col-sm-12">
+                          <select id="selectSubcategory" class="form-control form-control-line">
+                            <option value="">Chọn danh mục</option>
+                          </select>
                         </div>
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectProduct" class="col-md-12 required"><strong>Chọn Sản phẩm</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectProduct" class="form-control form-control-line">
-                                <option value="">Chọn sản phẩm</option>
-                              </select>
-                            </div>
-                          </div>
+                      </div>                 
+                      <div class="form-group form-add">
+                        <label for="selectProduct" class="col-md-12 required"><strong>Chọn Sản phẩm</strong></label>
+                        <div class="col-sm-12">
+                          <select id="selectProduct" name="selectProduct" class="form-control form-control-line" required>
+                            <option value="">Chọn sản phẩm</option>
+                          </select>
                         </div>
-                      </div>
-                      <div class="row no-gutters">
+                      </div>                    
+                      <div class="row no-gutters form-add">
                         <div class="col-12 col-sm-6">
                           <div class="form-group">
                             <label for="selectSize" class="col-md-12 required"><strong>Chọn Size</strong></label>
                             <div class="col-sm-12">
-                              <select id="selectSize" class="form-control form-control-line">
+                              <select id="selectSize" name="selectSize" class="form-control form-control-line" required>
                               </select>
                             </div>
                           </div>
@@ -152,16 +146,16 @@
                           <div class="form-group">
                             <label for="quantity" class="col-md-12 required"><strong>Số lượng</strong></label>
                             <div class="col-md-12">
-                              <input id="quantity" name="quantity" type="number" placeholder="Số lượng" min="1"
+                              <input id="quantity" name="quantity" type="number" placeholder="Số lượng" required
                                 class="form-control form-control-line" />
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="update-quantity" class="col-md-12 required"><strong>Số lượng</strong></label>
+                        <label for="updateQuantity" class="col-md-12 required"><strong>Số lượng</strong></label>
                         <div class="col-md-12">
-                          <input id="update-quantity" name="update-quantity" type="number" placeholder="Số lượng" min="1"
+                          <input id="updateQuantity" name="updateQuantity" type="number" placeholder="Số lượng" min="1"
                             class="form-control form-control-line" />
                         </div>
                       </div>
@@ -211,6 +205,8 @@
 
   <!-- JavaScript files-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery.validate/jquery.validate.js"></script>
+  <script src="vendor/jquery.validate/additional-methods.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
   <script src="vendor/owl.carousel/owl.carousel.min.js"></script>

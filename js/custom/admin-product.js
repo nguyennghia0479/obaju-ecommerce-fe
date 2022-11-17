@@ -21,6 +21,10 @@ $(document).ready(function () {
         })
     }
 
+    function getCurrency(price) {
+        return (price / 1000).toFixed(3)
+    }
+
     function getProducts() {
         $.ajax({
             url: "http://localhost:8080/api/v1/products",
@@ -34,7 +38,7 @@ $(document).ready(function () {
                 var row = `<tr>
                                 <th>${index + 1}</th>
                                 <td>${value.name}</td>
-                                <td>${value.code}</td>
+                                <td>${getCurrency(value.price)} VND</td>
                                 <td><img src="${value.avatarURL}" alt="${value.name}" width="90em"></td>
                                 <td>${value.subcategory.name}</td>
                                 <td>
@@ -102,6 +106,8 @@ $(document).ready(function () {
         $("#avatarURL").val(null)
         $("#avatarURL").next('.custom-file-label').html('Choose a File');
         $("#previewImg").attr('src', '').hide()
+        $(".form-control, .custom-file-input").removeClass("is-invalid is-valid")
+        $("label[class=error]").remove()
         getSelectColor(null)
         getSelectSubcategory(null)
     }
@@ -119,7 +125,7 @@ $(document).ready(function () {
             }
         }).done(function(response) {
             if(response.hasError == false) {
-                getToastSuccess("Add product successfully")
+                getToastSuccess("Thêm sản phẩm thành công")
                 clearFormData()
                 getProducts()
             }
@@ -145,7 +151,7 @@ $(document).ready(function () {
                 }
             }).done(function(response) {
                 if(!response.hasError) {
-                    getToastSuccess("Update product successfully")
+                    getToastSuccess("Cập nhật sản phẩm thành công")
                     clearFormData()
                     getProducts()
                 }
@@ -185,6 +191,7 @@ $(document).ready(function () {
             $("#name").val(product.name)
             $("#price").val(product.price)
             $("#previewImg").attr('src', product.avatarURL)
+            $("#avatarURL").addClass('ignore')
             getSelectColor(product.color)
             getSelectSubcategory(product.subcategory.id)
         }).fail(function (xhr, status, error) {
@@ -194,25 +201,70 @@ $(document).ready(function () {
             getToastError(message)
         })
     })
+    
 
-    $("#btn-save-product").click(function (e) {
-        e.preventDefault()
-        var dataId = $("#id").val()
-        var dataColor = $("#selectColor").val()
-        var dataSubcategoryId = $("#selectSubcategory").val()
-        var dataAvatarURL = $("#avatarURL")[0].files
-       
-        var form = new FormData($("#productForm")[0]);
-        form.append('color', dataColor)
-        form.append('subcategoryId', dataSubcategoryId)
-        if(dataAvatarURL.length > 0) {
-            form.append('file', dataAvatarURL[0])
-        }
-
-        if(dataId == '') {
-            createProduct(form)
-        } else {
-            updateProduct(form, dataId)
+    $("#productForm").validate({
+        ignore: ".ignore",
+        rules: {
+            avatarURL: {
+                required: true,
+                extension: "jpg|jpeg|png|jfif"
+            },
+            name: {
+                required: true,
+                minlength: 5,
+                maxlength: 100
+            },
+            selectColor: "required",
+            price: {
+                required: true,
+                number: true,
+                digits: true
+            },
+            selectSubcategory: "required"
+        },
+        messages: {
+            avatarURL: {
+                required: "Bạn chưa chọn file ảnh",
+                extension: "File ảnh phải có đuôi là jpg, jpeg, png, jfif"
+            },
+            name: {
+                required: "Bạn chưa nhập tên sản phẩm",
+                minlength: "Tên sản phẩm phải có ít nhất 5 ký tự",
+                maxlength: "Tên sản phẩm tối đa 100 ký tự"
+            },
+            selectColor: "Bạn chưa chọn màu sắc",
+            price: {
+                required: "Bạn chưa nhập đơn giá",
+                number: "Đơn giá phải là số nguyên dương",
+                digits: "Đơn giá phải là số nguyên dương"
+            },
+            selectSubcategory: "Bạn chưa chọn danh mục"
+        },
+        highlight: function (input) {
+            $(input).addClass('is-invalid');
+        },
+        unhighlight: function (input) {
+           $(input).removeClass('is-invalid').addClass('is-valid');
+        },
+        submitHandler: function () {
+            var dataId = $("#id").val()
+            var dataColor = $("#selectColor").val()
+            var dataSubcategoryId = $("#selectSubcategory").val()
+            var dataAvatarURL = $("#avatarURL")[0].files
+           
+            var form = new FormData($("#productForm")[0]);
+            form.append('color', dataColor)
+            form.append('subcategoryId', dataSubcategoryId)
+            if(dataAvatarURL.length > 0) {
+                form.append('file', dataAvatarURL[0])
+            }
+    
+            if(dataId == '') {
+                createProduct(form)
+            } else {
+                updateProduct(form, dataId)
+            }
         }
     })
 

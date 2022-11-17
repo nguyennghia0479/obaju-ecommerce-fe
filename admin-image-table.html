@@ -43,9 +43,9 @@
             <!-- breadcrumb-->
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
                 <li aria-current="page" class="breadcrumb-item">Admin</li>
-                <li aria-current="page" class="breadcrumb-item active">Image</li>
+                <li aria-current="page" class="breadcrumb-item active">Quản lý Hình ảnh</li>
               </ol>
             </nav>
           </div>
@@ -64,19 +64,15 @@
                 <div class="row justify-content-between">
                   <div class="col-lg-3">
                     <a id="btn-add-images" href="#imageFormModal" data-toggle="modal" class="btn btn-primary" data-toggle="tooltip"
-                      title="Add new">
+                      title="Thêm mới">
                       <i class="fa fa-plus" aria-hidden="true"></i>
-                    </a>
-                    <a id="btn-remove-images" href="#imageFormModal" data-toggle="modal" class="btn btn-danger" data-toggle="tooltip"
-                      title="Delete product images">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
                   </div>
                   <div class="col-lg-6">
                     <div class="container">
                       <form role="search" class="ml-auto">
                         <div class="input-group">
-                          <input type="text" placeholder="Search" class="form-control">
+                          <input type="text" placeholder="Tìm kiếm hình ảnh" class="form-control">
                           <div class="input-group-append">
                             <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                           </div>
@@ -85,7 +81,6 @@
                     </div>
                   </div>
                 </div>
-
                 <hr>
                 <div class="table-responsive">
                   <table id="table-image" class="table table-hover">
@@ -95,7 +90,7 @@
                         <th>Tên</th>
                         <th>Hình ảnh</th>
                         <th>Sản phẩm</th>
-                        <th>Action</th>
+                        <th>Chức năng</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -160,7 +155,7 @@
                           <div class="form-group">
                             <label for="selectProduct" class="col-md-12 required"><strong>Chọn Sản phẩm</strong></label>
                             <div class="col-sm-12">
-                              <select id="selectProduct" class="form-control form-control-line">
+                              <select id="selectProduct" name="selectProduct" class="form-control form-control-line" required>
                                 <option value="">Chọn sản phẩm</option>
                               </select>
                             </div>
@@ -171,9 +166,6 @@
                         <div class="col-sm-12">
                           <button type="submit" id="btn-save-image" class="btn btn-success">
                             <i class="fa fa-check" aria-hidden="true"></i>Lưu
-                          </button>
-                          <button type="submit" id="btn-delete-image" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i>Xóa
                           </button>
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">
                             <i class="fa fa-times-circle" aria-hidden="true"></i>Đóng
@@ -216,6 +208,8 @@
 
   <!-- JavaScript files-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/jquery.validate/jquery.validate.js"></script>
+  <script src="vendor/jquery.validate/additional-methods.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
   <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
