@@ -63,7 +63,7 @@
             }
         }).done(function (response) {
                 row.closest('tr').remove()
-                getToastSuccess(response.content)
+                getToastSuccess("Xóa thành công")
             
         }).fail(function (xhr, status, error) {
             var data = xhr.responseText;
