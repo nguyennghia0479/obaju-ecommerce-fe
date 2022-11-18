@@ -17,5 +17,11 @@ $(document).ready(function () {
         })
     }
 
+    function getCartItems() {
+        var cartItems = Cookies.get('cartItems')
+        $("#cartItems").text(cartItems)
+    }
+
+    getCartItems()
     header()
 })
