@@ -17,6 +17,7 @@
   <!-- owl carousel-->
   <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
   <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
+  <link rel="stylesheet" href="vendor/toast-master/css/jquery.toast.css">
   <!-- theme stylesheet-->
   <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
   <!-- Custom stylesheet - for your changes-->
@@ -42,10 +43,9 @@
             <!-- breadcrumb-->
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Ladies</a></li>
-                <li class="breadcrumb-item"><a href="#">Tops</a></li>
-                <li aria-current="page" class="breadcrumb-item active">White Blouse Armani</li>
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="#" class="category">Áo sơ mi</a></li>
+                <li aria-current="page" class="breadcrumb-item active"></li>
               </ol>
             </nav>
           </div>
@@ -60,28 +60,29 @@
                   <div class="product-info">
                   </div>
                   <div class="row">
-                      <div class="col-lg-4 offset-lg-2 col-md-12">
-                        <div class="form-group">
-                          <label for="selectSize"><strong>Size</strong></label>
-                          <select class="form-control" id="selectSize">
-                          </select>
-                        </div>
+                    <input type="hidden" id="productId" name="productId">
+                    <div class="col-lg-4 offset-lg-2 col-md-12">
+                      <div class="form-group">
+                        <label for="selectSize"><strong>Size</strong></label>
+                        <select id="selectSize" name="selectSize" class="form-control form-control-line">
+                        </select>
                       </div>
-                      <div class="col-lg-4 col-md-12">
-                        <div class="form-group">
-                          <label for="selectQuantity"><strong>Số lượng</strong></label>
-                          <select class="form-control" id="selectQuantity">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                          </select>
-                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <div class="form-group">
+                        <label for="selectQuantity"><strong>Số lượng</strong></label>
+                        <select id="selectQuantity" name="selectQuantity" class="form-control form-control-line">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
                       </div>
+                    </div>
                   </div>
                   <p class="text-center buttons mt-3">
-                    <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                    <a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Add to wishlist</a>
+                    <button type="submit" id="btn-add-cart" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Thêm giỏ hàng</button>
+                    <a href="basket.html" class="btn btn-outline-primary"><i class="fa fa-heart"></i> Yêu thích</a>
                   </p>
                 </div>
                 <div data-slider-id="1" class="owl-thumbs">
@@ -128,61 +129,7 @@
                 </div>
               </div>
               <div class="container">
-                <div class="product-slider owl-carousel owl-theme">
-                  <div class="item">
-                    <div class="card">
-                      <img class="card-img-top mb-2" src="img/product1.jpg" alt="">
-                      <div class="text text-center">
-                        <h3>Fur coat</h3>
-                        <p class="price">$143</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="card">
-                      <img class="card-img-top mb-2" src="img/product2.jpg" alt="">
-                      <div class="text text-center">
-                        <h3>Fur coat</h3>
-                        <p class="price">$143</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="card">
-                      <img class="card-img-top mb-2" src="img/product3.jpg" alt="">
-                      <div class="text text-center">
-                        <h3>Fur coat</h3>
-                        <p class="price">$143</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="card">
-                      <img class="card-img-top mb-2" src="img/product1.jpg" alt="">
-                      <div class="text text-center">
-                        <h3>Fur coat</h3>
-                        <p class="price">$143</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="card">
-                      <img class="card-img-top mb-2" src="img/product2.jpg" alt="">
-                      <div class="text text-center">
-                        <h3>Fur coat</h3>
-                        <p class="price">$143</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="card">
-                      <img class="card-img-top mb-2" src="img/product3.jpg" alt="">
-                      <div class="text text-center">
-                        <h3>Fur coat</h3>
-                        <p class="price">$143</p>
-                      </div>
-                    </div>
-                  </div>
+                <div class="product-slider owl-carousel owl-theme">       
                 </div>
               </div>
             </div>
@@ -200,13 +147,15 @@
 
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery.validate/jquery.validate.js"></script>
+    <script src="vendor/jquery.validate/additional-methods.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
     <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
-    <script src="js/front.js"></script>
     <script src="js/custom/layout.js"></script>
     <script src="js/custom/details.js"></script>
+    <!-- <script src="js/custom/cart.js"></script> -->
 </body>
 
 </html>

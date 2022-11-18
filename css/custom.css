@@ -80,3 +80,11 @@
     color: red;
     margin-top: 10px;
 }
+
+#content .products .card {
+    transition: .7s;
+}
+
+#content .products .card:hover {
+    transform: scale(1.1);
+}

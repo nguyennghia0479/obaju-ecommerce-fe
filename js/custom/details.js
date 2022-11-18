@@ -1,5 +1,26 @@
 $(document).ready(function () {
 
+    function getToastSuccess(result) {
+        $.toast({
+            heading: 'Success',
+            position: 'top-right',
+            text: result,
+            showHideTransition: 'slide',
+            icon: 'success'
+        })
+    }
+
+    function getToastError(result) {
+        $.toast({
+            heading: 'Error',
+            position: 'top-center',
+            text: result,
+            showHideTransition: 'fade',
+            icon: 'error',
+            hideAfter: false
+        })
+    }
+
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
@@ -15,13 +36,15 @@ $(document).ready(function () {
         return false;
     }
 
-    function getCurrency(price) {
-        return (price / 1000).toFixed(3)
-    }
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
 
-    function getSelectSize(productId) {
+    });
+
+    function getSelectSizeByProductId(productId) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/product-sizes/" + productId,
+            url: "http://localhost:8080/api/v1/product-sizes/select-size/" + productId,
             method: "GET"
         }).done(function(response) {
             $("#selectSize").empty()
@@ -34,17 +57,20 @@ $(document).ready(function () {
 
     function getDetails() {
         var name = getUrlParameter("name")
+        $(".breadcrumb .category").text("Sản phẩm")
+        $(".breadcrumb .active").text(name)
         $.ajax({
             url: "http://localhost:8080/api/v1/products/detail/" + name,
             method: "GET"
         }).done(function (response) {
             $("#productMain .product-info").empty()
             var product = response.content;
+            $("#productId").val(product.id)
             var row = `<h2 class="text-center">${product.name}</h2>
-                        <p class="price mt-1">${getCurrency(product.price)} VND</p>`
+                        <p class="price mt-1">${formatter.format(product.price)}</p>`
             $("#productMain .product-info").append(row)
 
-            getSelectSize(`${product.id}`)
+            getSelectSizeByProductId(`${product.id}`)
 
             $("#productMain .shop-detail-carousel").empty()
             $("#productMain .owl-thumbs").empty()
@@ -53,7 +79,7 @@ $(document).ready(function () {
                 var row3 = `<button class="owl-thumb-item"><img src="${value.imageURL}" alt="" class="img-fluid"></button>`
                 $("#productMain .shop-detail-carousel").append(row2)
                 $("#productMain .owl-thumbs").append(row3)
-            })
+            })     
         })
     }
 
@@ -69,7 +95,7 @@ $(document).ready(function () {
                                 <img class="card-img-top mb-2" src="${value.avatarURL}" alt="Image">
                                 <div class="text text-center">
                                     <h3>${value.name}</h3>
-                                    <p class="price">${getCurrency(value.price)} VND</p>
+                                    <p class="price">${formatter.format(value.price)}</p>
                                 </div>
                                 </div>
                             </div>`
@@ -77,6 +103,30 @@ $(document).ready(function () {
             })          
         })
     }
+
+    $("#btn-add-cart").click(function(e) {
+        e.preventDefault()
+        var dataProductId = $("#productId").val()
+        var dataSizeId = $("#selectSize").val()
+        var dataQuantity = $("#selectQuantity").val()
+        $.ajax({
+            url: "http://localhost:8080/api/v1/carts",
+            method: "POST",
+            data: {
+                productId: dataProductId,
+                sizeId: dataSizeId,
+                quantity: dataQuantity
+            },
+        }).done(function (response) {
+            Cookies.set("cartItems", response.content.length)
+            getToastSuccess("Thêm giỏ hàng thành công")
+        }).fail(function (xhr, status, error) {
+            var data = xhr.responseText
+            var jsonResponse = JSON.parse(data)
+            var message = jsonResponse["errors"]
+            getToastError(message)
+        })
+    })
 
     getDetails()
     getRelateProduct()
