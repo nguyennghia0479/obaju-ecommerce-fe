@@ -55,13 +55,13 @@ $(document).ready(function () {
                                         Size ${value.stock.productSize.size}</a>
                                 </td>
                                 <td>
-                                    <input style="width: 4em;" type="number" stock-id="${value.stock.id}" id="quantity" name="quantity" 
+                                    <input style="width: 4em;" type="number" stock-id="${value.stock.id}" name="quantity" 
                                         value="${value.quantity}" min=1 max=10 class="form-control">
                                 </td>
                                 <td>${formatter.format(value.stock.product.price)}</td>
                                 <td>${formatter.format(totalPrice)}</td>
                                 <td>
-                                    <button id="btn-remove-cart" stock-id=${value.stock.id} class="btn btn-danger btn-sm">
+                                    <button stock-id=${value.stock.id} class="btn btn-danger btn-sm btn-remove-cart">
                                         <i class="fa fa-trash-o"></i>
                                     </button>
                                 </td>
@@ -127,15 +127,15 @@ $(document).ready(function () {
         })
     }
 
-    $("body").on('change', "#quantity", function() {
-        var dataQuantity = $("#quantity").val()
+    $("body").on('change', "input[name=quantity]", function() {
+        var dataQuantity = $("input[name=quantity]").val()
         var dataStockId= $(this).attr("stock-id")
      
         if(dataQuantity != '')
             updateCart(dataStockId, dataQuantity)
     })
 
-    $("body").one('click', '#btn-remove-cart', function(e) {
+    $("body").one('click', '.btn-remove-cart', function(e) {
         e.preventDefault()
         var dataStockId = $(this).attr("stock-id")
         deleteItemInCart(dataStockId)
