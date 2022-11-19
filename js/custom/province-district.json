@@ -1,0 +1,272 @@
+[
+    {
+        "id": "1",
+        "name": "Hà Nội",
+        "parent_id":"0"
+    },
+    {
+        "id": "2",
+        "name": "Thành phố Hồ Chí Minh",
+        "parent_id":"0"
+    },
+    {
+        "id": "3",
+        "name" : "Quận Ba Đình",
+        "parent_id": "1"
+    },
+    {
+        "id": "4",
+        "name" : "Quận Bắc Từ Liêm",
+        "parent_id": "1"
+    },
+    {
+        "id": "5",
+        "name" : "Quận Cầu Giấy",
+        "parent_id": "1"
+    },
+    {
+        "id": "6",
+        "name" : "Quận Đống Đa",
+        "parent_id": "1"
+    },
+    {
+        "id": "7",
+        "name" : "Quận Hà Đông",
+        "parent_id": "1"
+    },
+    {
+        "id": "8",
+        "name" : "Quận Hai Bà Trưng",
+        "parent_id": "1"
+    },
+    {
+        "id": "9",
+        "name" : "Quận Hoàn Kiếm",
+        "parent_id": "1"
+    },
+    {
+        "id": "10",
+        "name" : "Quận Hoàng Mai",
+        "parent_id": "1"
+    },
+    {
+        "id": "11",
+        "name" : "Quận Long Biên",
+        "parent_id": "1"
+    },
+    {
+        "id": "12",
+        "name" : "Quận Nam Từ Liêm",
+        "parent_id": "1"
+    },
+    {
+        "id": "13",
+        "name" : "Quận Tây Hồ",
+        "parent_id": "1"
+    },
+    {
+        "id": "14",
+        "name" : "Quận Thanh Xuân",
+        "parent_id": "1"
+    },
+    {
+        "id": "15",
+        "name" : "Thị xã Sơn Tây",
+        "parent_id": "1"
+    },
+    {
+        "id": "16",
+        "name" : "Huyện Ba Vì",
+        "parent_id": "1"
+    },
+    {
+        "id": "17",
+        "name" : "Huyện Chương Mỹ",
+        "parent_id": "1"
+    },
+    {
+        "id": "18",
+        "name" : "Huyện Đan Phượng",
+        "parent_id": "1"
+    },
+    {
+        "id": "19",
+        "name" : "Huyện Đông Anh",
+        "parent_id": "1"
+    },
+    {
+        "id": "20",
+        "name" : "Huyện Gia Lâm",
+        "parent_id": "1"
+    },
+    {
+        "id": "21",
+        "name" : "Huyện Hoài Đức",
+        "parent_id": "1"
+    },
+    {
+        "id": "22",
+        "name" : "Huyện Mê Linh",
+        "parent_id": "1"
+    },
+    {
+        "id": "23",
+        "name" : "Huyện Mỹ Đức",
+        "parent_id": "1"
+    },
+    {
+        "id": "24",
+        "name" : "Huyện Phú Xuyên",
+        "parent_id": "1"
+    },
+    {
+        "id": "25",
+        "name" : "Huyện Phúc Thọ",
+        "parent_id": "1"
+    },
+    {
+        "id": "26",
+        "name" : "Huyện Quốc Oai",
+        "parent_id": "1"
+    },
+    {
+        "id": "27",
+        "name" : "Huyện Sóc Sơn",
+        "parent_id": "1"
+    },
+    {
+        "id": "28",
+        "name" : "Huyện Thạch Thất",
+        "parent_id": "1"
+    },
+    {
+        "id": "29",
+        "name" : "Huyện Thanh Oai",
+        "parent_id": "1"
+    },
+    {
+        "id": "30",
+        "name" : "Huyện Thanh Trì",
+        "parent_id": "1"
+    },
+    {
+        "id": "31",
+        "name" : "Huyện Thường Tín",
+        "parent_id": "1"
+    },
+    {
+        "id": "32",
+        "name" : "Huyện Ứng Hòa",
+        "parent_id": "1"
+    },
+    {
+        "id": "33",
+        "name" : "Quận 1",
+        "parent_id": "2"
+    },
+    {
+        "id": "34",
+        "name" : "Quận 3",
+        "parent_id": "2"
+    },
+    {
+        "id": "35",
+        "name" : "Quận 4",
+        "parent_id": "2"
+    },
+    {
+        "id": "36",
+        "name" : "Quận 5",
+        "parent_id": "2"
+    },
+    {
+        "id": "37",
+        "name" : "Quận 6",
+        "parent_id": "2"
+    },
+    {
+        "id": "38",
+        "name" : "Quận 7",
+        "parent_id": "2"
+    },
+    {
+        "id": "39",
+        "name" : "Quận 8",
+        "parent_id": "2"
+    },
+    {
+        "id": "40",
+        "name" : "Quận 10",
+        "parent_id": "2"
+    },
+    {
+        "id": "41",
+        "name" : "Quận 11",
+        "parent_id": "2"
+    },
+    {
+        "id": "42",
+        "name" : "Quận 12",
+        "parent_id": "2"
+    },
+    {
+        "id": "43",
+        "name" : "Quận Bình Tân",
+        "parent_id": "2"
+    },
+    {
+        "id": "44",
+        "name" : "Quận Bình Thạnh",
+        "parent_id": "2"
+    },
+    {
+        "id": "45",
+        "name" : "Quận Gò Vấp",
+        "parent_id": "2"
+    },
+    {
+        "id": "46",
+        "name" : "Quận Phú Nhuận",
+        "parent_id": "2"
+    },
+    {
+        "id": "47",
+        "name" : "Quận Tân Bình",
+        "parent_id": "2"
+    },
+    {
+        "id": "48",
+        "name" : "Quận Tân Phú",
+        "parent_id": "2"
+    },
+    {
+        "id": "49",
+        "name" : "Thành phố Thủ Đức",
+        "parent_id": "2"
+    },
+    {
+        "id": "50",
+        "name" : "Huyện Bình Chánh",
+        "parent_id": "2"
+    },
+    {
+        "id": "51",
+        "name" : "Huyện Cần Giờ",
+        "parent_id": "2"
+    },
+    {
+        "id": "52",
+        "name" : "Huyện Củ Chi",
+        "parent_id": "2"
+    },
+    {
+        "id": "53",
+        "name" : "Huyện Hóc Môn",
+        "parent_id": "2"
+    },
+    {
+        "id": "54",
+        "name" : "Huyện Nhà Bè",
+        "parent_id": "2"
+    }
+]

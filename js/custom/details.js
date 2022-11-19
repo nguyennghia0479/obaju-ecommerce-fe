@@ -17,7 +17,6 @@ $(document).ready(function () {
             text: result,
             showHideTransition: 'fade',
             icon: 'error',
-            hideAfter: false
         })
     }
 
@@ -124,7 +123,7 @@ $(document).ready(function () {
             var data = xhr.responseText
             var jsonResponse = JSON.parse(data)
             var message = jsonResponse["errors"]
-            getToastError(message)
+            getToastError("Bạn đã chọn quá số lượng hiện có")
         })
     })
 

@@ -33,9 +33,8 @@ $(document).ready(function () {
             $.each(response.content, function (index, value) {
                 var row = `<tr>
                                 <td>${index + 1}</td>
-                                <td>${value.product.name}</td>
+                                <td>${value.product.name} Size ${value.productSize.size}</td>
                                 <td><img src="${value.product.avatarURL}" alt="${value.product.name}" width="100em"></td>
-                                <td>${value.productSize.size}</td>
                                 <td>${value.quantity}</td>
                                 <td>
                                     <div class="row no-gutters">

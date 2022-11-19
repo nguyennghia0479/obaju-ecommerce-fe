@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     if (Cookies.get('token') != null) {
         var user = parseJwt(Cookies.get('token'))
+        console.log(user.sub)
         if(user.scope[0].toLowerCase() != 'group admin') {
             window.location.href = "404.html"
         }
