@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Obaju : e-commerce template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
+    <link rel="stylesheet" href="vendor/toast-master/css/jquery.toast.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div id="header">
+    </div>
+
+    <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- breadcrumb-->
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                  <li aria-current="page" class="breadcrumb-item active">Thanh toán</li>
+                </ol>
+              </nav>
+            </div>
+            <div id="checkout" class="col-lg-9">
+              <div class="box">
+                <form id="checkoutForm" method="post" action="#">
+                    <h1>Thanh toán</h1>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" 
+                                aria-controls="home" aria-selected="true"> Thông tin khách hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" 
+                                aria-controls="profile" aria-selected="false"> Giỏ hàng</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="content py-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label for="selectPayment"><strong>Thanh toán</strong></label>
+                                        <select name="selectPayment" id="selectPayment" class="form-control" required>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label for="street"><strong>Địa chỉ</strong></label>
+                                        <input id="street" name="street" type="text" class="form-control" 
+                                          placeholder="112 Đ. Cao Thắng Phường 4" required>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="selectProvince"><strong>Tỉnh, Thành</strong></label>
+                                    <select id="selectProvince" name="selectProvince" class="form-control" required>
+                                      <option value="">Chọn Tỉnh, Thành</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">                                                            
+                                  <div class="form-group">
+                                    <label for="selectDistrict"><strong>Quận, Huyện, Xã</strong></label>
+                                    <select id="selectDistrict" name="selectDistrict" class="form-control" required>
+                                      <option value="">Chọn Quận, Huyện Xã</option>
+                                    </select>
+                                  </div>                               
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <table id="basket" class="table">
+                                <thead>
+                                  <tr>
+                                    <th colspan="2">Sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>                       
+                                    <th colspan="2">Tổng</th>
+                                  </tr>
+                                </thead>
+                                <tbody>                   
+                                </tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th colspan="4">Tổng hóa đơn</th>
+                                    <th id="totalOrder" colspan="2"></th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                        </div>
+                    </div>
+
+                    <div class="box-footer d-flex justify-content-between">
+                        <a href="basket.html" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Quay lại</a>
+                        <button id="btn-checkout" type="submit" class="btn btn-primary">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i> Đặt hàng
+                        </button>
+                    </div>
+                </form>
+              </div>
+              <!-- /.box-->
+            </div>
+            <!-- /.col-lg-9-->
+            <div class="col-lg-3">
+              <div id="order-summary" class="card">
+                <div class="card-header">
+                  <h3 class="mt-4 mb-4">Đơn hàng</h3>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Tổng tiền</td>
+                          <th class="total-price">$446.00</th>
+                        </tr>
+                        <tr>
+                          <td>Phí giao hàng</td>
+                          <th class="ship-price">$10.00</th>
+                        </tr>
+                        <tr class="total">
+                          <td style="width: 30%;">Tổng thanh toán</td>
+                          <th class="total-order-price">$12.456.000</th>
+                          <input type="hidden" name="total-order-price" id="total-order-price">
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.col-lg-3-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+    *** FOOTER ***
+    _________________________________________________________
+    -->
+    <div id="footer-section">
+    </div>
+
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery.validate/jquery.validate.js"></script>
+    <script src="vendor/jquery.validate/additional-methods.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery.cookie/js.cookie.min.js"> </script>
+    <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
+    <script src="js/custom/layout.js"></script>
+    <script src="js/custom/checkout.js"></script>
+  </body>
+</html>
