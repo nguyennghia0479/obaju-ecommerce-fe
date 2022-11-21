@@ -33,14 +33,13 @@ $(document).ready(function () {
 
     function getBasket() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/carts",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/carts",
             method: "GET"
         }).done(function (response) {
             $("#basket tbody").empty()
             if (response.content.length <= 0)
                 $("#btn-checkout").attr("disabled", true)
             var totalOrder = 0
-            var item = response.content.length
             $.each(response.content, function (index, value) {
                 var totalPrice = `${getTotalPrice(value.stock.product.price, value.quantity)}`
                 totalOrder += parseInt(totalPrice)
@@ -60,7 +59,6 @@ $(document).ready(function () {
                             </tr>`
                 $("#basket tbody").append(row)
             })
-            $("#itemQuantity").text("Bạn có " + item + " sản phẩm trong giỏ hàng")
             $("#totalOrder").text(formatter.format(totalOrder))
             $("#order-summary .total-price").text(formatter.format(totalOrder))
             $("#order-summary .ship-price").text(formatter.format(20000))
@@ -89,7 +87,7 @@ $(document).ready(function () {
 
     function getSelectPayment() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/orders/select-payment",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/orders/select-payment",
             method: "GET"
         }).done(function (response) {
             $("#selectPayment").empty()
@@ -178,7 +176,7 @@ $(document).ready(function () {
             var dataSelectDistrict = $("#selectDistrict option:selected").text()
             var dataAddress = dataStreet + " " + dataSelectDistrict + " " + dataSelectProvince
             $.ajax({
-                url: "http://localhost:8080/api/v1/orders/place-order",
+                url: "https://obaju-ecommerce.herokuapp.com/api/v1/orders/place-order",
                 method: "POST",
                 data: JSON.stringify({
                     totalPrice: dataTotalPrice,
@@ -193,7 +191,8 @@ $(document).ready(function () {
             }).done(function(response) {
                 Cookies.remove('cartItems')
                 clearForm()
-                getToastSuccess("Bạn đã đặt hàng thành công")
+                getBasket()
+                getToastSuccess("Bạn đã đặt hàng thành công")               
             }).fail(function(xhr, status, error) {
                 var data = responseText
                 var dataJson = JSON.parse(data)

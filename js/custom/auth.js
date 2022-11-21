@@ -37,14 +37,14 @@ $(document).ready(function () {
     $("#btn-login").click(function (e) {
         e.preventDefault()
         var url = window.location.href
-        var username = $("#username").val()
-        var password = $("#password").val()
+        var dataUsername = $("#usernameLogin").val()
+        var dataPassword = $("#passwordLogin").val()
         $.ajax({
-            url: "http://localhost:8080/api/v1/auth/login",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/auth/login",
             method: "POST",
             data: JSON.stringify({
-                username: username,
-                password: password
+                username: dataUsername,
+                password: dataPassword
             }),
             contentType: "application/json",
         }).done(function (response) {
@@ -67,5 +67,4 @@ $(document).ready(function () {
         Cookies.remove('token')
         window.location.href = "index.html"
     })
-
 })

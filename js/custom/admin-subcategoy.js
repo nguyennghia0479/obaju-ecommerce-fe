@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     function getSubcategory() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     function getSelectCategory() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select-category",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories/select-category",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     function createSubcategory(dataName, dataCode, dataDescription, dataCategory) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/subcategories",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/subcategories",
             method: "POST",
             data: JSON.stringify({
                 name: dataName,
@@ -117,7 +117,7 @@ $(document).ready(function () {
 
     function updateSubcategory(dataId, dataDescription) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/subcategories",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/subcategories",
             method: "PUT",
             data: JSON.stringify({
                 id: dataId,

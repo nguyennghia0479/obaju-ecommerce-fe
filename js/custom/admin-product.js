@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+
+    });
+
     function getToastSuccess(result) {
         $.toast({
             heading: 'Success',
@@ -21,13 +27,9 @@ $(document).ready(function () {
         })
     }
 
-    function getCurrency(price) {
-        return (price / 1000).toFixed(3)
-    }
-
     function getProducts() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/products",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/products",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -38,8 +40,8 @@ $(document).ready(function () {
                 var row = `<tr>
                                 <th>${index + 1}</th>
                                 <td>${value.name}</td>
-                                <td>${getCurrency(value.price)} VND</td>
-                                <td><img src="${value.avatarURL}" alt="${value.name}" width="90em"></td>
+                                <td>${formatter.format(value.price)}</td>
+                                <td><img src="${value.avatarURL}" alt="${value.name}" width="50em"></td>
                                 <td>${value.subcategory.name}</td>
                                 <td>
                                     <div class="row no-gutters">
@@ -63,7 +65,7 @@ $(document).ready(function () {
 
     function getSelectColor(color) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/products/select-color",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/products/select-color",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -82,7 +84,7 @@ $(document).ready(function () {
 
     function getSelectSubcategory(subcategoryId) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select-subcategory",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories/select-subcategory",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -114,7 +116,7 @@ $(document).ready(function () {
 
     function createProduct(form) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/products",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/products",
             method: "POST",
             data: form,
             cache: false,
@@ -140,7 +142,7 @@ $(document).ready(function () {
     function updateProduct(form, dataId) {
         form.append('id', dataId)
             $.ajax({
-                url: "http://localhost:8080/api/v1/admin/products",
+                url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/products",
                 method: "PUT",
                 data: form,
                 cache: false,
@@ -180,7 +182,7 @@ $(document).ready(function () {
     $("body").on('click', '.btn-edit-product', function() {
         var id = $(this).attr("product-id")
         $.ajax({
-            url: "http://localhost:8080/api/v1/products/" + id,
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/products/" + id,
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));

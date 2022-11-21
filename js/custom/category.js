@@ -3,7 +3,7 @@ $(document).ready(function () {
     function getToastSuccess(result) {
         $.toast({
             heading: 'Success',
-            position: 'top-right',
+            position: 'top-center',
             text: result,
             showHideTransition: 'slide',
             icon: 'success'
@@ -45,7 +45,7 @@ $(document).ready(function () {
         var name = getUrlParameter("name")
         $(".breadcrumb .active").text(name)
         $.ajax({
-            url: "http://localhost:8080/api/v1/products/subcategory/" + name,
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/products/subcategory/" + name,
             method: "GET"
         }).done(function (response) {
             $(".products").empty()
@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     function getSelectSizeByProductId(productId) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/product-sizes/select-size/" + productId,
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/product-sizes/select-size/" + productId,
             method: "GET"
         }).done(function(response) {
             $("#selectSize").empty()
@@ -115,7 +115,7 @@ $(document).ready(function () {
             var dataSizeId = $("#selectSize").val()
             var dataQuantity = $("#selectQuantity").val()
             $.ajax({
-                url: "http://localhost:8080/api/v1/carts",
+                url: "https://obaju-ecommerce.herokuapp.com/api/v1/carts",
                 method: "POST",
                 data: {
                     productId: dataProductId,

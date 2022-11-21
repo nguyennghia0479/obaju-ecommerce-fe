@@ -24,4 +24,5 @@ $(function () {
     $("#modal-delete").load('modal-delete.html')
     $("#admin-sidebar").load('admin-sidebar.html', changeActiveLink)
     $("#admin-footer").load('admin-footer.html')
+    $("#customer-sidebar").load('customer-sidebar.html', changeActiveLink)
 })

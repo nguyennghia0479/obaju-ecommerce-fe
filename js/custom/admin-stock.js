@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     function getStocks() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/stocks",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/stocks",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     function getSelectSubcategoryAndProduct() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select-subcategory",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories/select-subcategory",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -80,7 +80,7 @@ $(document).ready(function () {
                 subcategoryId: dataSubcategoryId
             }
             $.ajax({
-                url: "http://localhost:8080/api/v1/subcategories/products/select-products",
+                url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories/products/select-products",
                 method: "GET",
                 data: data,
                 beforeSend: function (xhr) {
@@ -99,7 +99,7 @@ $(document).ready(function () {
 
     function getSelectSize(sizeId) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/product-sizes",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/product-sizes",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -136,7 +136,7 @@ $(document).ready(function () {
 
     function createStock(dataProductId, dataSizeId, dataQuantity) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/stocks",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/stocks",
             method: "POST",
             data: JSON.stringify({
                 productId: dataProductId,
@@ -163,7 +163,7 @@ $(document).ready(function () {
 
     function updateStock(dataId, dataQuantity) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/stocks",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/stocks",
             method: "PUT",
             data: JSON.stringify({
                 id: dataId,
