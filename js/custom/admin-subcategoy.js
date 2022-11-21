@@ -171,7 +171,7 @@ $(document).ready(function () {
             },
             description: {
                 required: false,
-                maxlength: 10
+                maxlength: 1000
             },
             selectCategory: "required"
 
