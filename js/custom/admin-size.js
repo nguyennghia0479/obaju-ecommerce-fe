@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     function getSizes() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/product-sizes",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/product-sizes",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
     function getSelectSizeType() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/product-sizes/select-size-type",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/product-sizes/select-size-type",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -82,7 +82,7 @@ $(document).ready(function() {
 
     function createSize(dataSize) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/product-sizes",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/product-sizes",
             method: "POST",
             data: JSON.stringify({
                 size: dataSize

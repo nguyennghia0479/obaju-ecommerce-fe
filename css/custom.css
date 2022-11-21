@@ -59,7 +59,7 @@
     font-size: 0.9rem;
 }
 
-.modal-body form .required:after {
+.required:after {
     content: " *";
     color: red;
 }

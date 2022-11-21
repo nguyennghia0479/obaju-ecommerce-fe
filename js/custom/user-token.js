@@ -1,4 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
+
+    function getPageURL() {
+        var currentLocation = window.location.href;
+        currentLocation = currentLocation.replace('//', '/').split('/');
+        var page = currentLocation[currentLocation.length - 1];
+        return page
+    }
 
     function parseJwt(token) {
         var base64Url = token.split('.')[1];
@@ -10,15 +17,27 @@ $(document).ready(function() {
         return JSON.parse(jsonPayload);
     }
 
-    if (Cookies.get('token') != null) {
-        var user = parseJwt(Cookies.get('token'))
-        console.log(user.sub)
-        if(user.scope[0].toLowerCase() != 'group admin') {
+    function adminAccess() {
+        if (Cookies.get('token') != null) {
+            var user = parseJwt(Cookies.get('token'))
+            if (user.scope[0].toLowerCase() != 'group admin') {
+                window.location.href = "404.html"
+            }
+        } else {
             window.location.href = "404.html"
         }
-    } else {
-        window.location.href = "404.html"
     }
 
+    function userAccess() {
+        if (Cookies.get('token') == null) {
+            window.location.href = "404.html"
+        }
+    }
 
+    var page = getPageURL()
+    if(page.includes('admin')) {
+        adminAccess()
+    } else {
+        userAccess()
+    }
 })

@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     function getImages() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/images",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/images",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -33,8 +33,7 @@ $(document).ready(function () {
             $.each(response.content, function (index, value) {
                 var row = `<tr>
                                 <td>${index + 1}</td>
-                                <td>${value.name}</td>
-                                <td><img src="${value.imageURL}" alt="${value.name}" width="100em"></td>
+                                <td><img src="${value.imageURL}" alt="${value.name}" width="50em"></td>
                                 <td>${value.product.name}</td>
                                 <td>
                                     <div class="col-sm-6">
@@ -56,7 +55,7 @@ $(document).ready(function () {
 
     function getSelectSubcategoryAndProduct() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories/select-subcategory",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories/select-subcategory",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
@@ -76,7 +75,7 @@ $(document).ready(function () {
                 subcategoryId: dataSubcategoryId
             }
             $.ajax({
-                url: "http://localhost:8080/api/v1/subcategories/products/select-products",
+                url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories/products/select-products",
                 method: "GET",
                 data: data,
                 beforeSend: function (xhr) {
@@ -100,7 +99,7 @@ $(document).ready(function () {
 
     function createImages(form) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/admin/images",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/admin/images",
             method: "POST",
             data: form,
             cache: false,

@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     function header() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/subcategories",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/subcategories",
             method: "GET",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + Cookies.get('token'));
