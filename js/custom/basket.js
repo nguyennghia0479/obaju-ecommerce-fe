@@ -3,7 +3,7 @@ $(document).ready(function () {
     function getToastSuccess(result) {
         $.toast({
             heading: 'Success',
-            position: 'top-right',
+            position: 'top-center',
             text: result,
             showHideTransition: 'slide',
             icon: 'success'
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     function getBasket() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/carts",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/carts",
             method: "GET"
         }).done(function (response) {
             $("#basket tbody").empty()
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     function updateCart(dataStockId, dataQuantity) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/carts",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/carts",
             method: "PUT",
             data: {
                 stockId: dataStockId,
@@ -95,7 +95,7 @@ $(document).ready(function () {
 
     function deleteItemInCart(dataStockId) {
         $.ajax({
-            url: "http://localhost:8080/api/v1/carts/item",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/carts/item",
             method: "DELETE",
             data: {
                 stockId: dataStockId
@@ -114,7 +114,7 @@ $(document).ready(function () {
 
     function deleteCart() {
         $.ajax({
-            url: "http://localhost:8080/api/v1/carts",
+            url: "https://obaju-ecommerce.herokuapp.com/api/v1/carts",
             method: "DELETE",
         }).done(function (response) {
             Cookies.remove('cartItems')

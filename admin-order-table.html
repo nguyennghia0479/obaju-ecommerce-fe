@@ -45,7 +45,7 @@
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
                 <li aria-current="page" class="breadcrumb-item">Admin</li>
-                <li aria-current="page" class="breadcrumb-item active">Quản lý Hình ảnh</li>
+                <li aria-current="page" class="breadcrumb-item active">Quản lý Đơn hàng</li>
               </ol>
             </nav>
           </div>
@@ -62,17 +62,13 @@
             <div id="customer-orders">
               <div class="box">
                 <div class="row justify-content-between">
-                  <div class="col-lg-3">
-                    <a id="btn-add-images" href="#imageFormModal" data-toggle="modal" class="btn btn-primary" data-toggle="tooltip"
-                      title="Thêm mới">
-                      <i class="fa fa-plus" aria-hidden="true"></i>
-                    </a>
+                  <div class="col-lg-3">                  
                   </div>
                   <div class="col-lg-6">
                     <div class="container">
                       <form role="search" class="ml-auto">
                         <div class="input-group">
-                          <input type="text" placeholder="Tìm kiếm hình ảnh" class="form-control">
+                          <input type="text" placeholder="Tìm kiếm đơn hàng" class="form-control">
                           <div class="input-group-append">
                             <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                           </div>
@@ -83,95 +79,85 @@
                 </div>
                 <hr>
                 <div class="table-responsive">
-                  <table id="table-image" class="table table-hover">
+                  <table id="table-order" class="table table-hover">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Hình ảnh</th>
-                        <th>Sản phẩm</th>
+                        <th># Mã</th>
+                        <th>Ngày mua</th>
+                        <th>Thanh Toán</th>
+                        <th>Trạng thái</th>
+                        <th>Tài khoản</th>
                         <th>Chức năng</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="orders">
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-
-            <div id="modal-delete">
+           
+            <!-- Order detail modal -->
+            <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModaLabel"
+                  aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="orderModaLabel"><strong>Chi tiết đơn hàng</strong></h5>                   
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="table-responsive mb-4">
+                        <table id="order-detail" class="table">
+                          <thead>
+                            <tr>
+                              <th colspan="2">Sản phẩm</th>
+                              <th>Số lượng</th>
+                              <th>Đơn giá</th>
+                              <th>Tổng</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          </tbody>
+                          <tfoot id="order-summary">
+                            <tr>
+                              <th>Địa chỉ</th>
+                              <td colspan="4" class="address"></td>
+                            </tr>
+                            <tr>
+                              <th>Tổng tiền</th>
+                              <td colspan="4" class="total-price">$446.00</td>
+                            </tr>
+                            <tr>
+                              <th>Phí giao hàng</th>
+                              <td colspan="4" class="ship-price">$10.00</td>
+                            </tr>
+                            <tr>
+                              <th>Tổng thanh toán</th>
+                              <th colspan="4" class="total-order-price">$456.00</th>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+              </div>
             </div>
-            <div class="modal fade" id="imageFormModal" data-backdrop="static" tabindex="-1" role="dialog"
-              aria-labelledby="formModalLabel" aria-hidden="true">
+
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="formModalLabel"><strong>Thông tin Hình ảnh</strong></h5>
+                    <h5 class="modal-title" id="confirmModalLabel"><strong class="title"></strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                    <form id="imageForm" action="#" class="form-horizontal form-material" enctype="multipart/form-data">
-                      <div class="form-group">
-                        <div class="col-sm-12">
-                            <button type="button" id="btn-append-input" class="btn btn-success" data-toggle="tooltip" title="Add file input">
-                              <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row images">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <label for="file" class="col-md-12 required"><strong>Ảnh đại diện</strong></label>
-                            <div class="col-md-12 input-group">
-                              <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="file">
-                                <label class="custom-file-label" for="file">Choose a File</label>
-                              </div>
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-danger btn-remove" type="button">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row no-gutters">
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectSubcategory" class="col-md-12 required"><strong>Chọn Danh mục</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectSubcategory" class="form-control form-control-line">
-                                <option value="">Chọn danh mục</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label for="selectProduct" class="col-md-12 required"><strong>Chọn Sản phẩm</strong></label>
-                            <div class="col-sm-12">
-                              <select id="selectProduct" name="selectProduct" class="form-control form-control-line" required>
-                                <option value="">Chọn sản phẩm</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-12">
-                          <button type="submit" id="btn-save-image" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i>Lưu
-                          </button>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                            <i class="fa fa-times-circle" aria-hidden="true"></i>Đóng
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary btn-confirm">Xác nhận</button>
                   </div>
                 </div>
               </div>
@@ -216,7 +202,7 @@
   <script src="vendor/toast-master/js/jquery.toast.js"></script>
   <script src="js/custom/layout.js"></script>
   <script src="js/custom/user-token.js"></script>
-  <script src="js/custom/admin-images.js"></script>
+  <script src="js/custom/admin-order.js"></script>
 </body>
 
 </html>

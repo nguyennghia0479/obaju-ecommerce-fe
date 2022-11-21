@@ -39,54 +39,39 @@
               <!-- breadcrumb-->
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li aria-current="page" class="breadcrumb-item active">New account / Sign in</li>
+                  <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                  <li aria-current="page" class="breadcrumb-item active">Đăng ký</li>
                 </ol>
               </nav>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 offset-lg-3">
               <div class="box">
-                <h1>New account</h1>
-                <p class="lead">Not our registered customer yet?</p>
-                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                <h1>Tài khoản mới</h1>
                 <hr>
-                <form action="customer-orders.html" method="post">
+                <form id="registerForm" action="#" method="post">
                   <div class="form-group">
-                    <label for="name">Name</label>
-                    <input id="name" type="text" class="form-control">
+                    <label for="fullName" class="required"><strong>Họ tên</strong></label>
+                    <input id="fullName" name="fullName" type="text" class="form-control" placeholder="Họ tên" required>
                   </div>
                   <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="text" class="form-control">
+                    <label for="phoneNum" class="required"><strong>Số điện thoại</strong></label>
+                    <input id="phoneNum" name="phoneNum" type="text" class="form-control" placeholder="Số điện thoại" required>
                   </div>
                   <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control">
+                    <label for="email" class="required"><strong>Email</strong></label>
+                    <input id="email" name="email" type="email" class="form-control" placeholder="Email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="usernameRegister" class="required"><strong>Tên tài khoản</strong></label>
+                    <input id="usernameRegister" name="usernameRegister" type="text" class="form-control" placeholder="Tên tài khoản" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="passwordRegister" class="required"><strong>Mật khẩu</strong></label>
+                    <input id="passwordRegister" name="passwordRegister" type="password" class="form-control" placeholder="Mật khẩu" required>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="box">
-                <h1>Login</h1>
-                <p class="lead">Already our customer?</p>
-                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                <hr>
-                <form action="customer-orders.html" method="post">
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" class="form-control">
-                  </div>
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                    <button type="button" class="btn btn-outline-secondary btn-reset"><i class="fa fa-refresh"></i> Reset</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Đăng ký</button>
                   </div>
                 </form>
               </div>
@@ -104,11 +89,13 @@
 
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery.validate/jquery.validate.js"></script>
+    <script src="vendor/jquery.validate/additional-methods.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></script>
-    <script src="js/front.js"></script>
     <script src="js/custom/layout.js"></script>
+    <script src="js/custom/register.js"></script>
   </body>
 </html>
